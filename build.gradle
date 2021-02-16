@@ -145,7 +145,8 @@ ext {
 			jacksonDatabind: "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion",
 			poi            : "org.apache.poi:poi:$poiVersion",
 			io             : "commons-io:commons-io:2.5",
-			yasson         : "org.eclipse:yasson:1.0.4"
+			yasson         : "org.eclipse:yasson:1.0.4",
+			javaxAnnotation: "javax.annotation:javax.annotation-api:1.3.2" // java 11 javax.annotation 이 사라져서 명시적 의존성 필요.
 	]
 
 	web = [
