@@ -70,7 +70,7 @@ public class JpaConfig {
         factoryBean.setDataSource(dataSource());
         factoryBean.setJpaProperties(hibernateProperties());
         factoryBean.setJpaVendorAdapter(jpaVendorAdapter());
-        factoryBean.afterPropertiesSet();
+        factoryBean.afterPropertiesSet(); // 그냥 factoryBean 자체를 리턴했으면 이럴 필요 없었을 텐데??
         return factoryBean.getNativeEntityManagerFactory();
     }
 }
