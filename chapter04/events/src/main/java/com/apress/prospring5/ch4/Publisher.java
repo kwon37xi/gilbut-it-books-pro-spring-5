@@ -3,18 +3,29 @@ package com.apress.prospring5.ch4;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.context.ApplicationEventPublisherAware;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class Publisher implements ApplicationContextAware {
-    private ApplicationContext ctx;
+public class Publisher implements ApplicationEventPublisherAware {
+    // ApplicationContext 전체를 주입받기 보다는 ApplicationEventPublisher 만 주입받는게 낫다.
+    // 직접 주입 혹은, ApplicationEventPublisherAware 인터페이스 구현으로 주입받는다.
+    private ApplicationEventPublisher applicationEventPublisher;
 
-    public void setApplicationContext(ApplicationContext applicationContext)
-            throws BeansException {
-        this.ctx = applicationContext;
+    @Override
+    public void setApplicationEventPublisher(ApplicationEventPublisher applicationEventPublisher) {
+        this.applicationEventPublisher = applicationEventPublisher;
     }
 
+//    private ApplicationContext ctx;
+//
+//    public void setApplicationContext(ApplicationContext applicationContext)
+//            throws BeansException {
+//        this.ctx = applicationContext;
+//    }
+
     public void publish(String message) {
-        ctx.publishEvent(new MessageEvent(this, message));
+        applicationEventPublisher.publishEvent(new MessageEvent(this, message));
     }
 
     public static void main(String... args) {

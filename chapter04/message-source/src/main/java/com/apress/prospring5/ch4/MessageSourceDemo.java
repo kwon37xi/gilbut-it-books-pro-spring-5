@@ -10,6 +10,8 @@ public class MessageSourceDemo {
         ctx.load("classpath:spring/app-context-xml.xml");
         ctx.refresh();
 
+        // MessageSourceAware 로 주입받거나, MessageSource messageSource 를 직접 주입받는게 낫다.
+
         Locale english = Locale.ENGLISH;
         Locale korean = new Locale("ko", "KR");
 
